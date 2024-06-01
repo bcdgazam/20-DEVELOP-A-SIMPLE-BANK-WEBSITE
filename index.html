@@ -56,7 +56,7 @@
                     </div>
                     <div class="shadow-lg bg-orange-600 rounded-md font-semibold text-white pl-6 pr-36 py-10">
                         <h4 class="text-2xl">Balance</h4>
-                        <h1 class="text-6xl">$1240</h1>
+                        <h1 class="text-6xl">$ <span id="currentBalance">1240</span></h1>
                     </div>
                 </div>
             </div>            
@@ -97,13 +97,35 @@
         document.getElementById('depositButton').addEventListener('click', function(event){
             const depositAmount = document.getElementById('depositAmount').value;
             const depositNumber = parseFloat(depositAmount);
+
+            // We can make a function
+            /*
             const currentDeposit = document.getElementById('currentDeposit').innerText;
             const currentDepositAmount = parseFloat(currentDeposit);
             const totalDeposit = depositNumber + currentDepositAmount;
-            
             document.getElementById('currentDeposit').innerText = totalDeposit;
+            
+
+            document.getElementById('depositAmount').value = '';
+
+            // adding to the current balance
+            const currentBalance = document.getElementById('currentBalance').innerText;
+            const currentBalanceAmount = parseFloat(currentBalance);
+            const totalBalance = depositNumber + currentBalanceAmount;
+            document.getElementById('currentBalance').innerText = totalBalance;
+            */
+
+            updateSpanText('currentDeposit', depositNumber)
+            updateSpanText('currentBalance', depositNumber)
+
             document.getElementById('depositAmount').value = '';
         })
+        function updateSpanText(id, depositNumber){
+            const currentDeposit = document.getElementById(id).innerText;
+            const currentDepositAmount = parseFloat(currentDeposit);
+            const totalDeposit = depositNumber + currentDepositAmount;
+            document.getElementById(id).innerText = totalDeposit;
+        }
 
         document.getElementById('withdrawButton').addEventListener('click', function(event){
             console.log('someone withdrawn me');
